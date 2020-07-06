@@ -1,0 +1,71 @@
+resources:
+  - name: git-src
+    type: git
+    source:
+      uri: https://github.com/droidwiki/go2tech.de.git
+      branch: master
+
+jobs:
+  - name: deploy
+    serial: true
+    plan:
+      - get: git-src
+      - task: build
+        config:
+          platform: linux
+          image_resource:
+            type: registry-image
+            source:
+              repository: klakegg/hugo
+              tag: latest
+          inputs:
+            - name: git-src
+          outputs:
+            - name: artifact
+          run:
+            path: sh
+            args:
+              - -ec
+              - |
+                export BUILD_ROOT=$(pwd)
+                cd git-src
+                hugo
+
+                cp -R public/. $BUILD_ROOT/artifact/
+      - task: deploy
+        params:
+          HOST: ((hosts.eclair))
+        config:
+          platform: linux
+          image_resource:
+            type: registry-image
+            source:
+              repository: alpine
+              tag: latest
+          inputs:
+            - name: artifact
+          run:
+            path: sh
+            args:
+              - -ec
+              - |
+                apk add -q --no-progress rsync openssh-client
+
+                echo "((deployment.private_key))" > /tmp/ssh-key
+                chmod 600 /tmp/ssh-key
+                eval `ssh-agent -s`
+                ssh-add /tmp/ssh-key
+
+                /usr/bin/rsync \
+                 -e "ssh -o StrictHostKeyChecking=no" \
+                 --rsync-path="sudo -u www-data -g www-data rsync" \
+                 artifact/ ((deployment.username))@$HOST:/data/ha_volume/go2tech.de/ \
+                 --exclude=**/.git \
+                 --no-perms \
+                 --archive \
+                 --delete-delay \
+                 --delay-updates \
+                 --compress \
+                 --partial \
+                 --quiet \
+                 --delete
