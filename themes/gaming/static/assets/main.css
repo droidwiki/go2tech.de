@@ -139,6 +139,11 @@ footer {
 
 .footer > span:first-child {
     flex: 2;
+    display: flex;flex-direction: column;
+}
+
+.footer > span:first-child > span {
+    margin-bottom: 12px;
 }
 
 .footer h3 {
