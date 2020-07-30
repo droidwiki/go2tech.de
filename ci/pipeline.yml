@@ -10,6 +10,7 @@ jobs:
     serial: true
     plan:
       - get: git-src
+        trigger: true
       - task: build
         config:
           platform: linux
