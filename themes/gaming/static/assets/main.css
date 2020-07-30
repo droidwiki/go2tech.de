@@ -9,7 +9,7 @@ body {
 
 a {
     text-decoration: none;
-    color: rgb(140, 140, 140);
+    color: white;
 }
 
 h2 {
@@ -57,8 +57,12 @@ header > a:first-child {
     margin-right: 30px;
 }
 
+header > a:last-child {
+    background: rgb(65, 65, 65);
+}
+
 .opener {
-    background-image: url(img/whatiskoth.jpg);
+    background-image: url(img/oprep_combat_patrol_1.jpg);
     background-size: cover;
     background-repeat: no-repeat;
     background-position: center center;
@@ -146,6 +150,7 @@ footer {
     display: inline-block;
     font-size: 16px;
     margin-bottom: 10px;
+    color: rgb(140, 140, 140);
 }
 
 .footer svg {
