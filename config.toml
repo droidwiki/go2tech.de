@@ -2,3 +2,6 @@ baseURL = "https://go2tech.de/"
 languageCode = "en-us"
 title = "go2tech.de"
 theme = "gaming"
+
+[markup.goldmark.renderer]
+unsafe= true
