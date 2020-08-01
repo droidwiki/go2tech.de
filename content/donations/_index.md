@@ -1,9 +1,7 @@
 ---
-title: "Donations"
+title: "Donate to keep our services running"
 date: 2020-07-06T09:06:32+02:00
 ---
-
-## Donate to keep our services running
 
 We're proudly providing our services to our community (which we're a part of).
 It's also our philosophy, that our players should be able to focus on having a great time on our server.
