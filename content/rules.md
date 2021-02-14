@@ -28,5 +28,6 @@ The vote in admin can issue kick and restart commands without adhering to the vo
 #### Kick other players to use the server for your own group (Private session)
 The kick command is generally not meant to get you a private session on the server for your group.
 However, if your group has at least 3 players and you want to play with them only, you are allowed to kick other players.
+If possible, please give them a shot message in the text chat before kicking (this is, however, **not** a requirement, given it is an unacceptable burden in a combat scenario, e.g.).
 
 If you wish to make such a private event more often, please come talk to us in [our discord](https://go2tech.de/discord).
