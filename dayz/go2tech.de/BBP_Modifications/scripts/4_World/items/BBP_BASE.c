@@ -10,7 +10,7 @@ modded class BBP_BASE
 		if ( constrution_part.IsBase() )
 		{
 			//spawn toolkit
-			CreateConstructionKit();
+			CreateConstructionKit_BBP();
 		}
 
 		//update visuals (server)
@@ -26,8 +26,10 @@ modded class BBP_BASE
 		}
 	}
 
-	ItemBase CreateConstructionKit() {
-		lastConstructedKit = super.CreateConstructionKit();
+	ItemBase CreateConstructionKit_BBP() {
+		if ( lastConstructedKit == NULL ) {
+			lastConstructedKit = super.CreateConstructionKit_BBP();
+		}
 
 		return lastConstructedKit;
 	}
